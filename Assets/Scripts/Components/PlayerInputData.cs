@@ -8,4 +8,7 @@ public struct PlayerInputData : IComponentData
 	public KeyCode leftKey;
 	public KeyCode downKey;
 	public KeyCode rightKey;
+	[Space]
+	public KeyCode fireKey;
+	public KeyCode reloadKey;
 }

@@ -5,15 +5,11 @@ using UnityEngine;
 public partial class EntitySpawnSystem : SystemBase
 {
     private Entity _playerPrefab;
-    private EntityManager _manager;
 
     protected override void OnStartRunning()
     {
-        _manager = World.DefaultGameObjectInjectionWorld.EntityManager;
-
         var entityPrefabData = GetSingleton<EntityData>();
         _playerPrefab = entityPrefabData.PlayerPrefab;
-
 
         SpawnPlayer();
     }
@@ -25,6 +21,6 @@ public partial class EntitySpawnSystem : SystemBase
 
     private void SpawnPlayer()
     {
-        var player = _manager.Instantiate(_playerPrefab);
+        var player = EntityManager.Instantiate(_playerPrefab);
     }
 }

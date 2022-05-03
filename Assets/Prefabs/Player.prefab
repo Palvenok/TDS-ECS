@@ -97,6 +97,7 @@ GameObject:
   - component: {fileID: 5762116801781082936}
   - component: {fileID: 5762116801781082939}
   - component: {fileID: 5762116801781082938}
+  - component: {fileID: -7124664085535800324}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -391,6 +392,8 @@ MonoBehaviour:
   leftKey: 97
   downKey: 115
   rightKey: 100
+  fireKey: 323
+  reloadKey: 114
 --- !u!114 &5762116801781082938
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -408,3 +411,21 @@ MonoBehaviour:
     y: 0
     z: 0
   speed: 10
+--- !u!114 &-7124664085535800324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5762116801781082933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 249eeaef721a14e4a8a1733809589b9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isFire: 0
+  isReload: 0
+  fireDelayMilliseconds: 150
+  reloadDelayMilliseconds: 800
+  maxAmmoCount: 50
+  currentAmmoCount: 50
