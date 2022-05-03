@@ -6,12 +6,22 @@ using UnityEngine;
 [AlwaysSynchronizeSystem]
 public partial class PlayerInputSystem : SystemBase
 {
-    protected override void OnUpdate()
+	private Camera _camera;
+
+	protected override void OnStartRunning()
+	{
+		_camera = Camera.main;
+	}
+	protected override void OnUpdate()
     {
+		float3 mousePosition = _camera.ScreenToWorldPoint(Input.mousePosition);
+
 		Entities.ForEach((ref PlayerMovementData moveData,
 						  ref PlayerFireData fireData,
-						  in PlayerInputData inputData) =>
+						  ref PlayerInputData inputData) =>
 		{
+			inputData.mouseWorldPosition = mousePosition;
+
 			moveData.direction = float3.zero;
 
 			moveData.direction.y += Input.GetKey(inputData.upKey) ? 1 : 0;

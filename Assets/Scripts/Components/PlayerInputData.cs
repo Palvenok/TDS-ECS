@@ -1,4 +1,5 @@
 ﻿using Unity.Entities;
+using Unity.Mathematics;
 using UnityEngine;
 
 [GenerateAuthoringComponent]
@@ -11,4 +12,6 @@ public struct PlayerInputData : IComponentData
 	[Space]
 	public KeyCode fireKey;
 	public KeyCode reloadKey;
+	[Space]
+	public float3 mouseWorldPosition;
 }
