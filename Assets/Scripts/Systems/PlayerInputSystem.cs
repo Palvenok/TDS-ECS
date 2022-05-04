@@ -22,13 +22,13 @@ public partial class PlayerInputSystem : SystemBase
 		{
 			inputData.mouseWorldPosition = mousePosition;
 
-			moveData.direction = float3.zero;
+			moveData.velocity = float3.zero;
 
-			moveData.direction.y += Input.GetKey(inputData.upKey) ? 1 : 0;
-			moveData.direction.y -= Input.GetKey(inputData.downKey) ? 1 : 0;
+			moveData.velocity.y += Input.GetKey(inputData.upKey) ? 1 : 0;
+			moveData.velocity.y -= Input.GetKey(inputData.downKey) ? 1 : 0;
 
-			moveData.direction.x += Input.GetKey(inputData.rightKey) ? 1 : 0;
-			moveData.direction.x -= Input.GetKey(inputData.leftKey) ? 1 : 0;
+			moveData.velocity.x += Input.GetKey(inputData.rightKey) ? 1 : 0;
+			moveData.velocity.x -= Input.GetKey(inputData.leftKey) ? 1 : 0;
 
 			fireData.isFire = Input.GetKey(inputData.fireKey) ? true : false;
 			fireData.isReload = Input.GetKey(inputData.reloadKey) ? true : false;

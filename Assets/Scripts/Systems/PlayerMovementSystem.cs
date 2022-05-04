@@ -16,7 +16,7 @@ public partial class PlayerMovementSystem : SystemBase
 		Entities.ForEach((ref Translation transt,
 						  ref Rotation rot, 
 						  ref PhysicsVelocity vel, 
-						  in PlayerMovementData data,
+						  ref PlayerMovementData data,
 						  in PlayerInputData inputData) =>
 		{
 			var velocity = vel.Linear;
@@ -26,12 +26,20 @@ public partial class PlayerMovementSystem : SystemBase
 			float angle = math.atan2(inputData.mouseWorldPosition.x - pos.x,
 									 inputData.mouseWorldPosition.y - pos.y);// * Mathf.Rad2Deg;
 
-			float3 angle3 = new float3 { x = 0, y = 0, z = angle};
 
-			velocity = data.direction * data.speed;
+			velocity = data.velocity * data.speed;
 
 			vel.Linear = math.lerp(vel.Linear, velocity, deltaTime * 5);
 			rot.Value = quaternion.RotateZ(-angle);
+
+			data.position = transt.Value;
+
+			float3 forwardDirection = new float3 { 
+				x = math.sin(angle), 
+				y = math.cos(angle), 
+				z = 0 };
+
+			data.direction = forwardDirection;
 		}).Run();
 	}
 }
