@@ -39,8 +39,8 @@ public partial class PlayerFireSystem : SystemBase
             {
                 isDelaed = true;
                 Shoot(fireData.fireDelayMilliseconds, 
-                      playerMovementData.position, 
-                      playerMovementData.direction);
+                      playerMovementData,
+                      10);
             }
 
             if (fireData.isReload)
@@ -56,17 +56,20 @@ public partial class PlayerFireSystem : SystemBase
         }).WithoutBurst().Run();
     }
 
-    private async void Shoot(float delay, float3 origin, float3 direction)
+    private async void Shoot(float delay, PlayerMovementData data, float range = 5)
     {
         currentAmmoCount--;
 
         _collisionWorld = _buildPhysicsWorld.PhysicsWorld.CollisionWorld;
 
-        //var ray = new UnityEngine.Ray(origin, direction);
+        var ray = new UnityEngine.Ray(data.position, data.direction);
 
-        Debug.DrawRay(origin, direction * 10);
+        LaserScript.main.ShowLaser(ray.origin, ray.GetPoint(10));
+
+        Debug.DrawRay(data.position, data.direction * range);
 
         await UniTask.Delay(TimeSpan.FromMilliseconds(delay));
+        LaserScript.main.HideLaser();
         isDelaed = false;
     }
 
